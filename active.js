@@ -68,16 +68,27 @@ let earth,
   saturn,
   rckt,
   train999 = new THREE.Mesh();
+
 // sun = new THREE.Object3D(myScene.getObjectByName("sun"));
+earth = new THREE.Mesh();
 sun = new THREE.Mesh();
+ufo = new THREE.Mesh();
+et = new THREE.Mesh();
+light1 = new THREE.Mesh();
+light2 = new THREE.Mesh();
+moon = new THREE.Mesh();
+saturn = new THREE.Mesh();
+rckt = new THREE.Mesh();
+train999 = new THREE.Mesh();
 
 function objLoader(materials) {
   objLoader = new OBJLoader();
   objLoader.setMaterials(materials);
   // objLoader.setPath('./obj/');
 
-  objLoader.load("./obj/earth.obj", function (earth) {
+  objLoader.load("./obj/earth.obj", function (loadedEarth) {
     //로드 후 실행 함수
+    earth = loadedEarth;
     console.log(earth.position);
     earth.position.set(2, -2.5, 0);
     earth.rotation.y += 0.5;
@@ -95,59 +106,68 @@ function objLoader(materials) {
     sun.position.set(0, -0.5, 0);
     myScene.add(sun);
   });
-  objLoader.load("./obj/ufo.obj", function (ufo) {
+  objLoader.load("./obj/ufo.obj", function (loadedUfo) {
+    ufo = loadedUfo;
     ufo.position.set(-4.5, 1.3, 0);
     ufo.rotation.z += 0.2;
     ufo.rotation.x += 0.3;
     myScene.add(ufo);
   });
-  objLoader.load("./obj/et.obj", function (et) {
+  objLoader.load("./obj/et.obj", function (loadedEt) {
     //console.log(et.position);
+    et = loadedEt;
     et.position.set(-3.5, 0, 0);
     myScene.add(et);
   });
 
   //big light
-  objLoader.load("./obj/light1.obj", function (light1) {
+  objLoader.load("./obj/light1.obj", function (loadedLight1) {
+    light1 = loadedLight1;
     console.log(light1.position);
     light1.position.set(4.3, 3.3, 0);
     myScene.add(light1);
   });
 
   //middle light
-  objLoader.load("./obj/light2.obj", function (light2) {
+  objLoader.load("./obj/light2.obj", function (loadedLight2) {
+    light2 = loadedLight2;
     console.log(light2.position);
     light2.position.set(3.3, 2.3, 0);
     myScene.add(light2);
   });
 
   //small light
-  objLoader.load("./obj/light3.obj", function (light3) {
+  objLoader.load("./obj/light3.obj", function (loadedLight3) {
+    light3 = loadedLight3;
     console.log(light3.position);
     light3.position.set(2.5, 1.5, 0);
     myScene.add(light3);
   });
-  objLoader.load("./obj/moon.obj", function (moon) {
+  objLoader.load("./obj/moon.obj", function (loadedMoon) {
+    moon = loadedMoon;
     console.log(moon.position);
     moon.position.set(-1.8, 2.3, 0);
     moon.rotation.x += 0.1;
     myScene.add(moon);
   });
-  objLoader.load("./obj/saturn.obj", function (saturn) {
+  objLoader.load("./obj/saturn.obj", function (loadedSaturn) {
+    saturn = loadedSaturn;
     console.log(saturn.position);
     saturn.position.set(0, 3.8, 0);
     saturn.rotation.z -= 0.2;
     saturn.rotation.x += 0.5;
     myScene.add(saturn);
   });
-  objLoader.load("./obj/rckt.obj", function (rckt) {
+  objLoader.load("./obj/rckt.obj", function (loadedRckt) {
+    rckt = loadedRckt;
     console.log(rckt.position);
     rckt.position.set(4, -4, 0);
     rckt.rotation.z += 0.5;
     rckt.rotation.y += 0.3;
     myScene.add(rckt);
   });
-  objLoader.load("./obj/train999.obj", function (train999) {
+  objLoader.load("./obj/train999.obj", function (loadedTrain999) {
+    train999 = loadedTrain999;
     console.log(train999.position);
     train999.position.set(-3, -3.5, 0);
     train999.rotation.z += 0.7;
@@ -181,44 +201,79 @@ function createLink(txtContent, href, x, y, z, color) {
 let githubLink = createLink(
   "Universe",
   "https://github.com/ch0rckbean/Universe",
-  -3,
-  -3.5,
-  0,
-  "white"
+  sun.position.x + 0.05,
+  sun.position.y - 1.5,
+  sun.position.z,
+  "#38E54D"
 );
 let starMan = createLink(
   "starMan",
-  "https://www.youtube.com/watch?v=KEnoSwakR18"
+  "https://www.youtube.com/watch?v=KEnoSwakR18",
+  // light1.position.x,
+  // light1.position.y - 1.5,
+  // light1.position.z,
+  4.5,
+  3.2,
+  0,
+  "#F6F4EB"
+);
+let forHim = createLink(
+  "for him",
+  "https://youtu.be/dXq1JDKudgM",
+  // ufo.position.x + 0.05,
+  // ufo.position.y - 1.5,
+  // ufo.position.z
+  -4.45,
+  1.15,
+  0,
+  "#F6F4EB"
+);
+let exprs999 = createLink(
+  "Expres999",
+  "https://youtu.be/Lnd8Uld7Nx4",
+  -4,
+  -2,
+  0,
+  "#F6F4EB"
+);
+let d = createLink(
+  "D",
+  "https://youtu.be/eelfrHtmk68",
+  -1.7,
+  2.1,
+  0,
+  "#F6F4EB"
+);
+let dpr = createLink(
+  "Here goes nothing",
+  "https://youtu.be/d-Z0Td5KEXA",
+  4.2,
+  -2.6,
+  0,
+  "#F6F4EB"
 );
 
 //* Events
-// train999 = train999.addEventListener("click", R);
-// function R() {
-//   train999.rotation.x += 0.5;
-//   console.log("RR");
-// }
-// const rc = new THREE.Raycaster();
-// const pt = new THREE.Vector2();
-// function P(e) {
-//   pt.x = (e.clientX / window.innerWidth) * 2 - 1;
-//   pt.y = (e.clientX / window.innerHeight) * 2 - 1;
-// }
-// function rd() {
-//   if (typeof scene != "undefined") {
-//     //null check
-//     rc.setFromCamera(pt, myCamera);
-//     const it = rc.intersectObject(myScene.children);
-//     it.train999.position.set(20);
-//     myRenderer.render(myScene, myCamera);
-//   }
-// }
-// rd();
 
 //*create animation
+// define specifications for animating
+let direction = 1;
+const scaleSpeed = 0.005;
+light1.scale.set((1, 1, 1));
+
 function animate() {
   //정상 동작 함: transform은 왜 동작 x? => Mesh로 변환
   ctrl.update();
-  sun.rotation.y += 0.02;
+  sun.rotation.y += 0.04;
+  earth.rotation.y -= 0.02;
+  light1.scale.x += direction * scaleSpeed;
+  light1.scale.y += direction * scaleSpeed;
+  light1.scale.z += direction * scaleSpeed;
+
+  if (light1.scale.x >= 1.5 || light1.scale.x <= 1) {
+    direction *= -1;
+  }
+
   requestAnimationFrame(animate);
   myRenderer.render(myScene, myCamera);
   labelRenderer.render(myScene, myCamera);
@@ -230,7 +285,7 @@ function onResize() {
   myCamera.aspect = window.innerWidth / window.innerHeight;
   myCamera.updateProjectionMatrix();
   myRenderer.setSize(window.innerWidth, window.innerHeight);
-  labelRenderer.setSize(this.window.innerWidth, this.window.innerHeight);
+  labelRenderer.setSize(window.innerWidth, window.innerHeight);
 }
 window.addEventListener("resize", onResize);
 animate();
