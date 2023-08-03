@@ -3,6 +3,10 @@ import { MaterialLoader, Mesh } from "three";
 import { OrbitControls } from "../node_modules/three/examples/jsm/controls/OrbitControls.js";
 import { OBJLoader } from "../node_modules/three/examples/jsm/loaders/OBJLoader.js";
 import { MTLLoader } from "../node_modules/three/examples/jsm/loaders/MTLLoader.js";
+import {
+  CSS2DRenderer,
+  CSS2DObject,
+} from "../node_modules/three/examples/jsm/renderers/CSS2DRenderer.js";
 
 /* Basic Setting*/
 var myRenderer;
@@ -38,6 +42,7 @@ myScene.add(myCamera);
 
 myScene.background = new THREE.Color("#150050");
 
+/*Objs load */
 /*Controller / Loader*/
 const ctrl = new OrbitControls(myCamera, myRenderer.domElement);
 ctrl.update();
@@ -151,29 +156,63 @@ function objLoader(materials) {
   });
 }
 
-//* Events
-train999 = train999.addEventListener("click", R);
-function R() {
-  train999.rotation.x += 0.5;
-  console.log("RR");
-}
-const rc = new THREE.Raycaster();
-const pt = new THREE.Vector2();
-function P(e) {
-  pt.x = (e.clientX / window.innerWidth) * 2 - 1;
-  pt.y = (e.clientX / window.innerHeight) * 2 - 1;
+/*a tag */
+const labelRenderer = new CSS2DRenderer();
+labelRenderer.setSize(rd_w, rd_h);
+labelRenderer.domElement.style.position = "absolute";
+labelRenderer.domElement.style.top = "0px";
+labelRenderer.domElement.style.pointEvents = "none";
+document.body.appendChild(labelRenderer.domElement);
+
+//function for creating a tags
+function createLink(txtContent, href, x, y, z, color) {
+  const a = document.createElement("a");
+  const cPointLabel = new CSS2DObject(a);
+  cPointLabel.position.set(x, y, z);
+  a.textContent = txtContent;
+  a.href = href;
+  a.target = "_blink";
+  a.style.color = color;
+  a.className = "tooltip";
+  myScene.add(cPointLabel);
 }
 
-function rd() {
-  if (typeof scene != "undefined") {
-    //null check
-    rc.setFromCamera(pt, myCamera);
-    const it = rc.intersectObject(myScene.children);
-    it.train999.position.set(20);
-    myRenderer.render(myScene, myCamera);
-  }
-}
-rd();
+//add a tags and make them as a group
+let githubLink = createLink(
+  "Universe",
+  "https://github.com/ch0rckbean/Universe",
+  -3,
+  -3.5,
+  0,
+  "white"
+);
+let starMan = createLink(
+  "starMan",
+  "https://www.youtube.com/watch?v=KEnoSwakR18"
+);
+
+//* Events
+// train999 = train999.addEventListener("click", R);
+// function R() {
+//   train999.rotation.x += 0.5;
+//   console.log("RR");
+// }
+// const rc = new THREE.Raycaster();
+// const pt = new THREE.Vector2();
+// function P(e) {
+//   pt.x = (e.clientX / window.innerWidth) * 2 - 1;
+//   pt.y = (e.clientX / window.innerHeight) * 2 - 1;
+// }
+// function rd() {
+//   if (typeof scene != "undefined") {
+//     //null check
+//     rc.setFromCamera(pt, myCamera);
+//     const it = rc.intersectObject(myScene.children);
+//     it.train999.position.set(20);
+//     myRenderer.render(myScene, myCamera);
+//   }
+// }
+// rd();
 
 //*create animation
 function animate() {
@@ -182,13 +221,16 @@ function animate() {
   sun.rotation.y += 0.02;
   requestAnimationFrame(animate);
   myRenderer.render(myScene, myCamera);
+  labelRenderer.render(myScene, myCamera);
 }
 
 //*add resize event
 function onResize() {
+  //resize event는 변경되는 size 기준이기 때문에 rd_w, rd_h 변수 사용 x
   myCamera.aspect = window.innerWidth / window.innerHeight;
   myCamera.updateProjectionMatrix();
   myRenderer.setSize(window.innerWidth, window.innerHeight);
+  labelRenderer.setSize(this.window.innerWidth, this.window.innerHeight);
 }
 window.addEventListener("resize", onResize);
 animate();
