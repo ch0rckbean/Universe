@@ -161,7 +161,7 @@ function objLoader(materials) {
   objLoader.load("./obj/rckt.obj", function (loadedRckt) {
     rckt = loadedRckt;
     console.log(rckt.position);
-    rckt.position.set(6.5, -3.5, 0);
+    rckt.position.set(8, -3.5, 0);
     rckt.rotation.z += 0.5;
     rckt.rotation.y += 0.3;
     myScene.add(rckt);
@@ -202,7 +202,7 @@ let githubLink = createLink(
   "Universe",
   "https://github.com/ch0rckbean/Universe",
   sun.position.x + 0.05,
-  sun.position.y - 1.5,
+  sun.position.y - 1.7,
   sun.position.z,
   "#38E54D"
 );
@@ -213,7 +213,7 @@ let github = createLink(
   // light1.position.y - 1.5,
   // light1.position.z,
   4.5,
-  3.2,
+  3.1,
   0,
   "#F6F4EB"
 );
@@ -240,7 +240,7 @@ let nBlog = createLink(
 let velog = createLink(
   "Velog",
   "https://velog.io/@chr0ckbean",
-  4.2,
+  4,
   -1,
   0,
   "#F6F4EB"
@@ -250,7 +250,14 @@ let velog = createLink(
 
 //*create animation
 // define specifications for animating
-let direction = 1;
+//direction 1개만 쓰면 -1이 곱해져 obj별 애니메이션이
+//중첩되므로 각 obj별로 direction을 선언 해 애니메이션 제어
+//direction: 애니메이션 반복 위한 변수
+let lightDirection = 1;
+let ufoDirection = 1;
+let etDirection = 1;
+let trainDirection = 1;
+let rcktDirection = 1;
 const scaleSpeed = 0.005;
 light1.scale.set((1, 1, 1));
 
@@ -258,31 +265,43 @@ function animate() {
   //정상 동작 함: transform은 왜 동작 x? => Mesh로 변환
 
   sun.rotation.y += 0.04;
-  earth.rotation.y -= 0.01;
-  earth.rotation.z += 0.001;
-  // earth.position.y = direction * 0.0001; // 점점 내려옴 방지 위해 고정
+  earth.rotation.y -= 0.02;
 
-  light1.scale.x += direction * scaleSpeed;
-  light1.scale.y += direction * scaleSpeed;
-  light1.scale.z += direction * scaleSpeed;
+  light1.scale.x += lightDirection * scaleSpeed;
+  light1.scale.y += lightDirection * scaleSpeed;
+  light1.scale.z += lightDirection * scaleSpeed;
   if (light1.scale.x >= 1.5 || light1.scale.x <= 1) {
-    direction *= -1;
+    lightDirection *= -1;
   }
 
-  ufo.rotation.y += 0.1;
-  ufo.position.x += direction * -0.04;
-  if (ufo.position.x >= 4.5 || ufo.position.x <= -7.5) {
-    direction *= -1;
+  ufo.scale.x += ufoDirection * 0.01;
+  ufo.scale.y -= ufoDirection * 0.01;
+  ufo.rotation.y += 0.05;
+  ufo.position.x += ufoDirection * -0.04;
+  if (ufo.position.x >= -2.5 || ufo.position.x <= -7.5) {
+    ufoDirection *= -1;
   }
 
-  et.position.z += direction * 0.05;
+  // (-3.5, 0, 0)
+  et.position.z += etDirection * 0.05;
+  if (et.position.z >= 4 || et.position.z <= -0.1) {
+    etDirection *= -1;
+  }
+
   saturn.rotation.y += 0.05;
-  moon.rotation.z += direction * 0.005;
-  ufo.scale.x += direction * 0.01;
-  ufo.scale.y -= direction * 0.01;
-  train999.scale.x += direction * 0.01;
-  rckt.position.x += direction * 0.01;
-  rckt.position.y -= direction * 0.01;
+  train999.scale.x += trainDirection * 0.01;
+  if (train999.scale.x >= 1.7 || train999.scale.x <= 0.8) {
+    trainDirection *= -1;
+  }
+  // console.log(train999.scale.x);
+
+  // (8, -3.5, 0)
+  rckt.position.x += rcktDirection * 0.02;
+  rckt.position.y -= rcktDirection * 0.02;
+  if (rckt.position.y >= -1.5 || rckt.position.y <= -4) {
+    rcktDirection *= -1;
+  }
+  // console.log(rckt.position.y);
 
   requestAnimationFrame(animate);
   ctrl.update();
