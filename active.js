@@ -98,7 +98,7 @@ function objLoader(materials) {
   objLoader.load("./obj/sun.obj", function (loadedSun) {
     //sun => loadedSun
     sun = loadedSun; //대입 추가
-    console.log(sun.position);
+    // console.log(sun.position);
     // let box = new THREE.Box3().setFromObject(sun);
     // let sunSize=box.max.x- box.min.y;
     // console.log("sunSize", sunSize);
@@ -176,7 +176,7 @@ function objLoader(materials) {
   });
 }
 
-/*a tag */
+/*a tag renderer */
 const labelRenderer = new CSS2DRenderer();
 labelRenderer.setSize(rd_w, rd_h);
 labelRenderer.domElement.style.position = "absolute";
@@ -197,14 +197,22 @@ function createLink(txtContent, href, x, y, z, color) {
   myScene.add(cPointLabel);
 }
 
-//add a tags and make them as a group
+//create text, a tags + set attributes
+const h = document.createElement("h1");
+const hPointLabel = new CSS2DObject(h);
+hPointLabel.position.set(-0.05, 2, 0);
+h.textContent = "Click Texts !";
+h.style.color = "#38E54D";
+h.className = "tooltip";
+myScene.add(hPointLabel);
+
 let githubLink = createLink(
   "Universe",
   "https://github.com/ch0rckbean/Universe",
   sun.position.x + 0.05,
   sun.position.y - 1.7,
   sun.position.z,
-  "#38E54D"
+  "#F6F4EB"
 );
 let github = createLink(
   "Github",
