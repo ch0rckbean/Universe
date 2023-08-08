@@ -90,7 +90,7 @@ function objLoader(materials) {
     //로드 후 실행 함수
     earth = loadedEarth;
     console.log(earth.position);
-    earth.position.set(2, -2.5, 0);
+    earth.position.set(4, -0.5, 0);
     earth.rotation.y += 0.5;
     myScene.add(earth);
   });
@@ -146,7 +146,7 @@ function objLoader(materials) {
   objLoader.load("./obj/moon.obj", function (loadedMoon) {
     moon = loadedMoon;
     console.log(moon.position);
-    moon.position.set(-1.8, 2.3, 0);
+    moon.position.set(-4, 3, 0);
     moon.rotation.x += 0.1;
     myScene.add(moon);
   });
@@ -161,7 +161,7 @@ function objLoader(materials) {
   objLoader.load("./obj/rckt.obj", function (loadedRckt) {
     rckt = loadedRckt;
     console.log(rckt.position);
-    rckt.position.set(4, -4, 0);
+    rckt.position.set(6.5, -3.5, 0);
     rckt.rotation.z += 0.5;
     rckt.rotation.y += 0.3;
     myScene.add(rckt);
@@ -169,7 +169,7 @@ function objLoader(materials) {
   objLoader.load("./obj/train999.obj", function (loadedTrain999) {
     train999 = loadedTrain999;
     console.log(train999.position);
-    train999.position.set(-3, -3.5, 0);
+    train999.position.set(-5, -3, 0);
     train999.rotation.z += 0.7;
     train999.rotation.x += 0.5;
     myScene.add(train999);
@@ -223,16 +223,16 @@ let notion = createLink(
   // ufo.position.x + 0.05,
   // ufo.position.y - 1.5,
   // ufo.position.z
-  -1.7,
-  2.1,
+  -4,
+  2.8,
   0,
   "#F6F4EB"
 );
 let nBlog = createLink(
   "Naver Blog",
   "https://blog.naver.com/ch0rckbean",
-  -4,
-  -2,
+  -6,
+  -1.5,
   0,
   "#F6F4EB"
 );
@@ -241,7 +241,7 @@ let velog = createLink(
   "Velog",
   "https://velog.io/@chr0ckbean",
   4.2,
-  -2.6,
+  -1,
   0,
   "#F6F4EB"
 );
@@ -258,8 +258,9 @@ function animate() {
   //정상 동작 함: transform은 왜 동작 x? => Mesh로 변환
 
   sun.rotation.y += 0.04;
-  earth.rotation.y -= 0.02;
-  earth.rotation.z -= 0.001;
+  earth.rotation.y -= 0.01;
+  earth.rotation.z += 0.001;
+  // earth.position.y = direction * 0.0001; // 점점 내려옴 방지 위해 고정
 
   light1.scale.x += direction * scaleSpeed;
   light1.scale.y += direction * scaleSpeed;
@@ -270,7 +271,7 @@ function animate() {
 
   ufo.rotation.y += 0.1;
   ufo.position.x += direction * -0.04;
-  if (ufo.position.x >= 4.5 || ufo.position.x <= -8.5) {
+  if (ufo.position.x >= 4.5 || ufo.position.x <= -7.5) {
     direction *= -1;
   }
 
