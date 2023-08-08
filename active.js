@@ -206,9 +206,9 @@ let githubLink = createLink(
   sun.position.z,
   "#38E54D"
 );
-let starMan = createLink(
-  "starMan",
-  "https://www.youtube.com/watch?v=KEnoSwakR18",
+let github = createLink(
+  "Github",
+  "https://github.com/ch0rckbean",
   // light1.position.x,
   // light1.position.y - 1.5,
   // light1.position.z,
@@ -217,36 +217,29 @@ let starMan = createLink(
   0,
   "#F6F4EB"
 );
-let forHim = createLink(
-  "for him",
-  "https://youtu.be/dXq1JDKudgM",
+let notion = createLink(
+  "Notion",
+  "https://incongruous-larkspur-017.notion.site/bcb4a77192c54185a6e14fef0750fd0d?pvs=4",
   // ufo.position.x + 0.05,
   // ufo.position.y - 1.5,
   // ufo.position.z
-  -4.45,
-  1.15,
-  0,
-  "#F6F4EB"
-);
-let exprs999 = createLink(
-  "Expres999",
-  "https://youtu.be/Lnd8Uld7Nx4",
-  -4,
-  -2,
-  0,
-  "#F6F4EB"
-);
-let d = createLink(
-  "D",
-  "https://youtu.be/eelfrHtmk68",
   -1.7,
   2.1,
   0,
   "#F6F4EB"
 );
-let dpr = createLink(
-  "Here goes nothing",
-  "https://youtu.be/d-Z0Td5KEXA",
+let nBlog = createLink(
+  "Naver Blog",
+  "https://blog.naver.com/ch0rckbean",
+  -4,
+  -2,
+  0,
+  "#F6F4EB"
+);
+
+let velog = createLink(
+  "Velog",
+  "https://velog.io/@chr0ckbean",
   4.2,
   -2.6,
   0,
@@ -263,18 +256,35 @@ light1.scale.set((1, 1, 1));
 
 function animate() {
   //정상 동작 함: transform은 왜 동작 x? => Mesh로 변환
-  ctrl.update();
+
   sun.rotation.y += 0.04;
   earth.rotation.y -= 0.02;
+  earth.rotation.z -= 0.001;
+
   light1.scale.x += direction * scaleSpeed;
   light1.scale.y += direction * scaleSpeed;
   light1.scale.z += direction * scaleSpeed;
-
   if (light1.scale.x >= 1.5 || light1.scale.x <= 1) {
     direction *= -1;
   }
 
+  ufo.rotation.y += 0.1;
+  ufo.position.x += direction * -0.04;
+  if (ufo.position.x >= 4.5 || ufo.position.x <= -8.5) {
+    direction *= -1;
+  }
+
+  et.position.z += direction * 0.05;
+  saturn.rotation.y += 0.05;
+  moon.rotation.z += direction * 0.005;
+  ufo.scale.x += direction * 0.01;
+  ufo.scale.y -= direction * 0.01;
+  train999.scale.x += direction * 0.01;
+  rckt.position.x += direction * 0.01;
+  rckt.position.y -= direction * 0.01;
+
   requestAnimationFrame(animate);
+  ctrl.update();
   myRenderer.render(myScene, myCamera);
   labelRenderer.render(myScene, myCamera);
 }
