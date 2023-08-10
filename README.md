@@ -42,4 +42,4 @@ three.js의 Transform을 통해 애니메이션 부여하기
 
 [Velog](https://velog.io/@chr0ckbean/three.-js-magicaVoxel-Universe-%EC%9E%90%EA%B8%B0%EC%86%8C%EA%B0%9C-%ED%8F%AC%ED%8A%B8%ED%8F%B4%EB%A6%AC%EC%98%A4-%EC%9B%B9%ED%8E%98%EC%9D%B4%EC%A7%80)
 
-[배포 링크](https://ch0rckbean.github.io/Universe/)
+[배포링크](https://ch0rckbean.github.io/Universe/)
