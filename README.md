@@ -33,9 +33,13 @@ html, css, jsvascript, three.js, magicaVoxel
 
 ### 성과
 magica voxel을 통한 obj 생성
+
 objLoader를 통한 obj load 학습
+
 three.js 웹 페이지에 css, html 요소 추가하기
+
 three.js의 Transform을 통해 애니메이션 부여하기
+
 더욱 동적인 자기소개 웹페이지 제작
 
 ### Velog 및 배포 링크
