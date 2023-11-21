@@ -21,14 +21,19 @@ html, css, jsvascript, three.js, magicaVoxel
 
 ### 기능
 1. magica voxel을 사용해 저만의 우주를 구성할 object들을 생성했습니다.
-2. three.js의 objLoader를 통해 obj를 load 하고, transform(scale, transition, rotation)을 통한 애니메이션을 추가했습니다.
+![그림1](https://github.com/ch0rckbean/Universe/assets/86273626/17739c34-790f-40ad-9386-68272aea87eb)
+![image](https://github.com/ch0rckbean/Universe/assets/86273626/9681e34b-84dd-45e7-a7fa-7b3e424baff5)
+
+
+3. three.js의 objLoader를 통해 obj를 load 하고, transform(scale, transition, rotation)을 통한 애니메이션을 추가했습니다.
 ![](https://velog.velcdn.com/images/chr0ckbean/post/4a44f7ff-b639-47f7-9eb3-9ff94c629b30/image.gif)
 
-3. css2dObject, css2dRenderer, labelRenderer를 통해 a태그, h1을 생성했고 js를 통해 attribute를 set해 배치했습니다. 추가적으로 각 요소들에 클래스를 부여해 index.html에 css를 추가했습니다.
+4. css2dObject, css2dRenderer, labelRenderer를 통해 a태그, h1을 생성했고,  Js를 통해 attribute를 set해 배치했습니다.  추가적으로 각 요소들에 클래스를 부여해 index.html에 css를 적용했습니다.
 
-4. 초반에는 우주라는 컨셉에 맞게 우주 관련 음악, 은하철도 999 영상 등을 삽입했으나, 주위의 피드백을 수렴해 자기소개 웹페이지로 변경했습니다.
+5. 초반에는 우주라는 컨셉에 맞게 우주 관련 음악, 은하철도 999 영상 등을 삽입했으나, 주위의 피드백을 수렴해 자기소개 웹페이지로 변경했습니다.
 ![](https://velog.velcdn.com/images/chr0ckbean/post/1029f967-46ea-4d2d-9b4d-6931ae4039f3/image.png)
-5. 각 링크 클릭 시 저를 소개하는 페이지들로 연결되게 했습니다.
+
+6. 각 링크 클릭 시 저를 소개하는 페이지들로 연결되게 했습니다.
 ![](https://velog.velcdn.com/images/chr0ckbean/post/2d729451-898f-4a16-ac11-bfdf9d750e1d/image.gif)
 
 ### 성과
